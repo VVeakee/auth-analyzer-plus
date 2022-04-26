@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,14 +11,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import com.protect7.authanalyzer.entities.MatchAndReplace;
 import com.protect7.authanalyzer.entities.Session;
 import com.protect7.authanalyzer.entities.Token;
 import com.protect7.authanalyzer.util.CurrentConfig;
 import com.protect7.authanalyzer.util.GenericHelper;
-
-import burp.BurpExtender;
 
 public class StatusPanel extends JPanel{
 	
@@ -256,6 +252,7 @@ public class StatusPanel extends JPanel{
 	
 	public void updateTokenStatus(Token token) {
 		JLabel tokenLabel = tokenLabelMap.get(token.getName());
+		tokenLabel.putClientProperty("html.disable", null);
 		tokenLabel.setText(getTokenText(token));
 		GenericHelper.uiUpdateAnimation(tokenLabel, new Color(0, 153, 0));
 		if(token.getValue() != null) {
